@@ -19,16 +19,14 @@ public:
 };
 
 template <typename T>
-stack<T>::stack() : array_size_(2) { //Инициализируюв списке инициализаторов мы 
-									 //переменную инициализируем только один раз
+stack<T>::stack() : array_size_(2), count_(0) { //Инициализируюв списке инициализаторов мы
+						//переменную инициализируем только один раз
 	array_ = new T[array_size_];
-	count_ = 0;
 }
 
 template <typename T>
-stack<T>::stack(size_t maxEl) : array_size_(maxEl) {
-	array_ = new T[maxEl];
-	count_ = 0; //Инициализируя в блоке, мы, можно сказать, повторно инициализируем переменную
+stack<T>::stack(size_t maxEl) : array_size_(maxEl), count_(0) {
+	array_ = new T[maxEl]; //Инициализируя в блоке, мы, можно сказать, повторно инициализируем переменную
 }
 
 template <typename T>
@@ -47,9 +45,9 @@ void stack<T>::push(const T &value) {
 template<typename T>
 T stack<T>::pop() {
 	if (count_ == 0) {
-		throw domain_error{ "*** ERROR ***" };
+		throw domain_error{ "*** ERROR - Stack empty ***" };
 	}
-	array_[--count_];
+	--count_;
 	return array_[count_];
 }
 
