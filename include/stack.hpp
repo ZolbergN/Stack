@@ -19,15 +19,10 @@ public:
 };
 
 template <typename T>
-stack<T>::stack() : array_size_(2), count_(0) { //Инициализируюв списке инициализаторов мы
+stack<T>::stack() : array_size_(2), array_(new T[array_size_]), count_(0) {} //Инициализируюв списке инициализаторов мы
 						//переменную инициализируем только один раз
-	array_ = new T[array_size_];
-}
-
 template <typename T>
-stack<T>::stack(size_t maxEl) : array_size_(maxEl), count_(0) {
-	array_ = new T[maxEl]; //Инициализируя в блоке, мы, можно сказать, повторно инициализируем переменную
-}
+stack<T>::stack(size_t maxEl) : array_size_(maxEl), array_(new T[maxEl]), count_(0) {}//Инициализируя в блоке, мы, можно сказать, повторно инициализируем переменную
 
 template <typename T>
 void stack<T>::push(const T &value) {
